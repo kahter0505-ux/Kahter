@@ -7,777 +7,154 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&family=Almarai:wght@300;400;700;800&family=Reem+Kufi:wght@400;500;600;700&family=Marhey:wght@300;400;500;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Readex+Pro:wght@300;400;500;600;700&family=Lateef:wght@400;500;600;700&family=Scheherazade+New:wght@400;500;600;700&family=Changa:wght@400;500;600;700;800&family=El+Messiri:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
-:root{
---gold:#c79a45;
---navy:#1d2945;
---green:#0f6b55;
-}
-
+:root{--gold:#c79a45;--navy:#1d2945;--green:#0f6b55;--brown:#7b5b3a}
 *{margin:0;padding:0;box-sizing:border-box}
-
-body{
-font-family:'Tajawal',sans-serif;
-background:#e9edf3;
-min-height:100vh;
-padding:24px;
-overflow-x:hidden;
-}
-
-.wrapper{
-display:grid;
-grid-template-columns:390px 1fr;
-gap:35px;
-max-width:1650px;
-margin:auto;
-align-items:start;
-}
-
-.controls{
-background:#fff;
-border-radius:30px;
-padding:22px;
-position:sticky;
-top:18px;
-box-shadow:0 18px 55px rgba(0,0,0,.08);
-max-height:95vh;
-overflow:auto;
-}
-
-.logo{
-font-size:30px;
-font-weight:800;
-text-align:center;
-color:var(--navy);
-margin-bottom:8px;
-}
-
-.sub{
-font-size:14px;
-color:#6b7280;
-text-align:center;
-line-height:1.8;
-margin-bottom:18px;
-}
-
-.accordion{
-background:#fff;
-border:1px solid #e5e7eb;
-border-radius:18px;
-margin-bottom:14px;
-overflow:hidden;
-}
-
-.accordion summary{
-padding:18px;
-cursor:pointer;
-font-weight:800;
-font-size:15px;
-color:#1d2945;
-list-style:none;
-position:relative;
-}
-
+body{font-family:'Tajawal',sans-serif;background:#e9edf3;min-height:100vh;padding:24px;overflow-x:hidden}
+.wrapper{display:grid;grid-template-columns:390px 1fr;gap:35px;max-width:1650px;margin:auto;align-items:start}
+.controls{background:#fff;border-radius:30px;padding:22px;position:sticky;top:18px;box-shadow:0 18px 55px rgba(0,0,0,.08);max-height:95vh;overflow:auto}
+.logo{font-size:30px;font-weight:800;text-align:center;color:var(--navy);margin-bottom:8px}
+.sub{font-size:14px;color:#6b7280;text-align:center;line-height:1.8;margin-bottom:18px}
+.accordion{background:#fff;border:1px solid #e5e7eb;border-radius:18px;margin-bottom:14px;overflow:hidden}
+.accordion summary{padding:18px;cursor:pointer;font-weight:800;font-size:15px;color:#1d2945;list-style:none;position:relative}
 .accordion summary::-webkit-details-marker{display:none}
-
-.accordion summary::after{
-content:"+";
-position:absolute;
-left:18px;
-font-size:22px;
-transition:.3s;
-}
-
-.accordion[open] summary::after{
-transform:rotate(45deg);
-}
-
+.accordion summary::after{content:"+";position:absolute;left:18px;font-size:22px;transition:.3s}
+.accordion[open] summary::after{transform:rotate(45deg)}
 .inside{padding:0 18px 18px}
-
 .group{margin-bottom:18px}
-
-.group label{
-display:block;
-margin-bottom:8px;
-font-size:14px;
-font-weight:800;
-color:#26324f;
-}
-
-textarea,
-select,
-input[type=color],
-input[type=text]{
-width:100%;
-border:1px solid #dce2ed;
-outline:none;
-border-radius:16px;
-padding:14px;
-font-size:15px;
-background:#fff;
-font-family:'Tajawal',sans-serif;
-}
-
-textarea{
-height:170px;
-resize:vertical;
-line-height:1.9;
-}
-
-.rangeBox{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-input[type=range]{
-width:100%;
-accent-color:var(--gold);
-}
-
-.rangeValue{
-min-width:62px;
-background:var(--navy);
-color:#fff;
-padding:6px 10px;
-border-radius:10px;
-text-align:center;
-font-size:13px;
-}
-
-.optionGrid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-}
-
-.optionGrid.three{
-grid-template-columns:repeat(3,1fr);
-}
-
-.tempBtn{
-border:none;
-min-height:52px;
-border-radius:16px;
-cursor:pointer;
-font-family:'Tajawal';
-font-weight:800;
-transition:.25s;
-color:#fff;
-font-size:13px;
-padding:8px;
-}
-
+.group label{display:block;margin-bottom:8px;font-size:14px;font-weight:800;color:#26324f}
+textarea,select,input[type=color],input[type=text]{width:100%;border:1px solid #dce2ed;outline:none;border-radius:16px;padding:14px;font-size:15px;background:#fff;font-family:'Tajawal',sans-serif}
+textarea{height:170px;resize:vertical;line-height:1.9}
+.rangeBox{display:flex;align-items:center;gap:10px}
+input[type=range]{width:100%;accent-color:var(--gold)}
+.rangeValue{min-width:62px;background:var(--navy);color:#fff;padding:6px 10px;border-radius:10px;text-align:center;font-size:13px}
+.optionGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.optionGrid.three{grid-template-columns:repeat(3,1fr)}
+.tempBtn{border:none;min-height:52px;border-radius:16px;cursor:pointer;font-family:'Tajawal';font-weight:800;transition:.25s;color:#fff;font-size:13px;padding:8px}
 .tempBtn:hover{transform:translateY(-2px)}
-
-.download{
-width:100%;
-height:58px;
-border:none;
-border-radius:18px;
-background:#111827;
-color:#fff;
-font-size:17px;
-font-family:'Tajawal';
-font-weight:800;
-cursor:pointer;
-margin-top:12px;
-}
-
-.previewArea{
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:flex-start;
-min-height:92vh;
-}
-
-.previewLabel{
-font-size:22px;
-font-weight:800;
-color:var(--navy);
-margin-bottom:18px;
-}
-
-.phone{
-width:430px;
-height:760px;
-background:#fff;
-overflow:hidden;
-position:relative;
-box-shadow:0 35px 85px rgba(0,0,0,.15);
-}
-
-.screen{
-width:100%;
-height:100%;
-overflow:hidden;
-position:relative;
-}
-
-.status{
-position:absolute;
-inset:0;
-padding:22px 48px 55px;
-overflow:hidden;
-text-align:center;
-background:#fff;
-}
-
-.bgLayer{
-position:absolute;
-inset:0;
-z-index:0;
-}
-
-.frame{
-position:absolute;
-inset:24px;
-border-radius:28px;
-border:1px solid rgba(199,154,69,.35);
-z-index:1;
-pointer-events:none;
-}
-
-.smallFrame{
-position:absolute;
-inset:42px;
-border-radius:24px;
-border:1px solid rgba(29,41,69,.10);
-z-index:1;
-pointer-events:none;
-}
-
-.lineSide{
-position:absolute;
-top:60px;
-bottom:60px;
-width:3px;
-background:rgba(199,154,69,.65);
-z-index:2;
-}
-
-.lineLeft{left:24px}
-.lineRight{right:24px}
-
-.flower,
-.decor{
-position:absolute;
-pointer-events:none;
-z-index:1;
-}
-
-.flower{font-size:120px;opacity:.06}
-.decor{opacity:.10;font-size:160px}
-
-.f1{top:20px;left:15px}
-.f2{bottom:20px;right:15px}
-.decor1{top:-35px;left:-20px}
-.decor2{bottom:-45px;right:-10px}
-
-.layoutBox{
-position:relative;
-z-index:5;
-width:100%;
-height:100%;
-display:flex;
-flex-direction:column;
-justify-content:flex-start;
-align-items:center;
-gap:12px;
-padding-top:0;
-}
-
-.kicker{
-font-size:18px;
-font-weight:800;
-color:var(--gold);
-}
-
-.content{
-width:100%;
-white-space:pre-wrap;
-word-break:normal;
-overflow-wrap:break-word;
-transition:.2s;
-font-size:34px;
-line-height:1.9;
-font-family:'Amiri',serif;
-color:#172033;
-text-align:center;
-font-weight:400;
-letter-spacing:0;
-word-spacing:0;
-padding:0;
-max-height:100%;
-}
-
-.source{
-font-size:18px;
-font-weight:800;
-color:var(--gold);
-}
-
-.quoteMark{
-font-size:72px;
-line-height:1;
-color:rgba(199,154,69,.25);
-font-family:serif;
-}
-
-.chip{
-background:var(--navy);
-color:white;
-padding:10px 24px;
-border-radius:999px;
-font-size:18px;
-font-weight:800;
-}
-
-.numList{
-text-align:right;
-font-family:'Amiri',serif;
-font-size:30px;
-line-height:2.05;
-color:#172033;
-width:100%;
-}
-
-.numList div{
-border-bottom:1px solid rgba(0,0,0,.07);
-padding:6px 0;
-}
-
-.numList b{
-color:var(--navy);
-margin-left:12px;
-}
+.download{width:100%;height:58px;border:none;border-radius:18px;background:#111827;color:#fff;font-size:17px;font-family:'Tajawal';font-weight:800;cursor:pointer;margin-top:12px}
+.previewArea{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-height:92vh}
+.previewLabel{font-size:22px;font-weight:800;color:var(--navy);margin-bottom:18px}
+.phone{width:430px;height:760px;background:#fff;overflow:hidden;position:relative;box-shadow:0 35px 85px rgba(0,0,0,.15)}
+.screen{width:100%;height:100%;overflow:hidden;position:relative}
+.status{position:absolute;inset:0;padding:22px 48px 55px;overflow:hidden;text-align:center;background:#fff}
+.bgLayer{position:absolute;inset:0;z-index:0}
+.frame{position:absolute;inset:24px;border-radius:28px;border:1px solid rgba(199,154,69,.35);z-index:1;pointer-events:none}
+.smallFrame{position:absolute;inset:42px;border-radius:24px;border:1px solid rgba(29,41,69,.10);z-index:1;pointer-events:none}
+.lineSide{position:absolute;top:60px;bottom:60px;width:3px;background:rgba(199,154,69,.65);z-index:2}.lineLeft{left:24px}.lineRight{right:24px}
+.flower,.decor{position:absolute;pointer-events:none;z-index:1}.flower{font-size:120px;opacity:.06}.decor{opacity:.10;font-size:160px}
+.f1{top:20px;left:15px}.f2{bottom:20px;right:15px}.decor1{top:-35px;left:-20px}.decor2{bottom:-45px;right:-10px}
+.layoutBox{position:relative;z-index:5;width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:12px;padding-top:0}
+.kicker{font-size:18px;font-weight:800;color:var(--gold)}
+.content{width:100%;white-space:pre-wrap;word-break:normal;overflow-wrap:break-word;transition:.2s;font-size:34px;line-height:1.9;font-family:'Amiri',serif;color:#172033;text-align:center;font-weight:400;letter-spacing:0;word-spacing:0;padding:0;max-height:100%;overflow:hidden}
+.source{font-size:18px;font-weight:800;color:var(--gold)}
+.quoteMark{font-size:72px;line-height:1;color:rgba(199,154,69,.25);font-family:serif}
+.chip{background:var(--navy);color:white;padding:10px 24px;border-radius:999px;font-size:18px;font-weight:800}
+.numList{text-align:right;font-family:'Amiri',serif;font-size:30px;line-height:2.05;color:#172033;width:100%}
+.numList div{border-bottom:1px solid rgba(0,0,0,.07);padding:6px 0}.numList b{color:var(--navy);margin-left:12px}
 
 /* الخلفيات */
-.bg-white{background:#fff}
-.bg-cream{background:linear-gradient(145deg,#ffffff 0%,#f8f3e9 100%)}
-
-.bg-grid{
-background:#fff;
-background-image:
-linear-gradient(rgba(29,41,69,.045) 1px, transparent 1px),
-linear-gradient(90deg, rgba(29,41,69,.045) 1px, transparent 1px);
-background-size:42px 42px;
-}
-
-.bg-dots{
-background:#fbfbfb;
-background-image:radial-gradient(rgba(29,41,69,.17) 1.4px, transparent 1.4px);
-background-size:28px 28px;
-}
-
+.bg-white{background:#fff}.bg-cream{background:linear-gradient(145deg,#ffffff 0%,#f8f3e9 100%)}
+.bg-grid{background:#fff;background-image:linear-gradient(rgba(29,41,69,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(29,41,69,.045) 1px,transparent 1px);background-size:42px 42px}
+.bg-dots{background:#fbfbfb;background-image:radial-gradient(rgba(29,41,69,.17) 1.4px,transparent 1.4px);background-size:28px 28px}
 .bg-paper{background:linear-gradient(145deg,#fffaf1 0%,#f3ead8 100%)}
-
-.bg-marble{
-background:
-radial-gradient(circle at 20% 15%,rgba(210,210,210,.35),transparent 30%),
-radial-gradient(circle at 80% 70%,rgba(230,220,205,.35),transparent 35%),
-linear-gradient(145deg,#ffffff,#f7f7f7);
-}
-
-.bg-gold{
-background:
-radial-gradient(circle at 50% 0%,rgba(199,154,69,.25),transparent 45%),
-linear-gradient(180deg,#fff,#fbf4e6);
-}
-
-.bg-green{
-background:
-radial-gradient(circle at 85% 10%,rgba(15,107,85,.18),transparent 40%),
-linear-gradient(145deg,#ffffff,#f2fbf8);
-}
-
-.bg-blue{
-background:
-radial-gradient(circle at 15% 20%,rgba(29,43,123,.14),transparent 35%),
-linear-gradient(145deg,#ffffff,#eef2ff);
-}
-
-.bg-dark{
-background:
-radial-gradient(circle at 50% 0%,rgba(215,176,106,.20),transparent 35%),
-linear-gradient(145deg,#111827,#050816);
-}
-
-.bg-book{
-background:linear-gradient(90deg,#f0e5d5 0 15%,#fff 15% 100%);
-}
-
-.bg-islamic{
-background:
-radial-gradient(circle at 50% 50%,rgba(199,154,69,.08) 0 8%,transparent 9%),
-repeating-linear-gradient(45deg,rgba(29,41,69,.035) 0 2px,transparent 2px 28px),
-#fff;
-}
-
-.bg-islamic-lux{
-background-color:#fff;
-background-image:
-url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23b8bec8' stroke-width='1.4' opacity='.26'%3E%3Cpath d='M80 8C58 30 30 58 8 80c22 22 50 50 72 72 22-22 50-50 72-72-22-22-50-50-72-72z'/%3E%3Ccircle cx='80' cy='80' r='28'/%3E%3Cpath d='M80 8v144M8 80h144M34 34l92 92M126 34L34 126'/%3E%3Cpath d='M80 32c16 0 28 12 28 28 0 16-12 28-28 28-16 0-28-12-28-28 0-16 12-28 28-28z' transform='rotate(45 80 80)'/%3E%3C/g%3E%3C/svg%3E");
-background-size:155px 155px;
-}
+.bg-marble{background:radial-gradient(circle at 20% 15%,rgba(210,210,210,.35),transparent 30%),radial-gradient(circle at 80% 70%,rgba(230,220,205,.35),transparent 35%),linear-gradient(145deg,#ffffff,#f7f7f7)}
+.bg-gold{background:radial-gradient(circle at 50% 0%,rgba(199,154,69,.25),transparent 45%),linear-gradient(180deg,#fff,#fbf4e6)}
+.bg-green{background:radial-gradient(circle at 85% 10%,rgba(15,107,85,.18),transparent 40%),linear-gradient(145deg,#ffffff,#f2fbf8)}
+.bg-blue{background:radial-gradient(circle at 15% 20%,rgba(29,43,123,.14),transparent 35%),linear-gradient(145deg,#ffffff,#eef2ff)}
+.bg-dark{background:radial-gradient(circle at 50% 0%,rgba(215,176,106,.20),transparent 35%),linear-gradient(145deg,#111827,#050816)}
+.bg-book{background:linear-gradient(90deg,#f0e5d5 0 15%,#fff 15% 100%)}
+.bg-islamic{background:radial-gradient(circle at 50% 50%,rgba(199,154,69,.08) 0 8%,transparent 9%),repeating-linear-gradient(45deg,rgba(29,41,69,.035) 0 2px,transparent 2px 28px),#fff}
+.bg-islamic-lux{background-color:#fff;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%2398a0ad' stroke-width='1.6' opacity='.50'%3E%3Cpath d='M90 10L170 90L90 170L10 90Z'/%3E%3Ccircle cx='90' cy='90' r='34'/%3E%3Cpath d='M90 10V170M10 90H170'/%3E%3Cpath d='M40 40L140 140M140 40L40 140'/%3E%3Cpath d='M90 34c16 0 28 12 28 28S106 90 90 90 62 78 62 62 74 34 90 34z' transform='rotate(45 90 90)'/%3E%3C/g%3E%3C/svg%3E");background-size:155px 155px;background-repeat:repeat}
+.bg-islamic-clear{background-color:#fff;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='130' viewBox='0 0 130 130'%3E%3Cg fill='none' stroke='%239aa3b1' stroke-width='1.2' opacity='.55'%3E%3Cpath d='M65 5L125 65L65 125L5 65Z'/%3E%3Cpath d='M65 20L110 65L65 110L20 65Z'/%3E%3Ccircle cx='65' cy='65' r='24'/%3E%3Cpath d='M65 5v120M5 65h120M25 25l80 80M105 25L25 105'/%3E%3C/g%3E%3C/svg%3E");background-size:130px 130px;background-repeat:repeat}
 
 /* التنسيقات */
 .layout-center .layoutBox{justify-content:flex-start;padding-top:0}
-
-.layout-card .content{
-background:#fff;
-border-radius:34px;
-padding:42px 30px;
-box-shadow:0 20px 50px rgba(0,0,0,.10);
-border-bottom:8px solid var(--gold);
-}
-
-.layout-side-line .lineRight{
-width:7px;
-right:42px;
-top:105px;
-bottom:105px;
-background:var(--gold);
-}
-
-.layout-side-line .lineLeft{display:none}
-
-.layout-side-line .layoutBox{
-align-items:flex-start;
-text-align:right;
-padding-right:35px;
-}
-
-.layout-side-line .content{text-align:right}
-
-.layout-magazine .layoutBox{
-align-items:flex-start;
-text-align:right;
-justify-content:flex-start;
-padding-top:0;
-}
-
-.layout-magazine .content{
-text-align:right;
-margin-top:12px;
-}
-
+.layout-card .content{background:#fff;border-radius:34px;padding:42px 30px;box-shadow:0 20px 50px rgba(0,0,0,.10);border-bottom:8px solid var(--gold)}
+.layout-side-line .lineRight{width:7px;right:42px;top:105px;bottom:105px;background:var(--gold)}.layout-side-line .lineLeft{display:none}.layout-side-line .layoutBox{align-items:flex-start;text-align:right;padding-right:35px}.layout-side-line .content{text-align:right}
+.layout-magazine .layoutBox{align-items:flex-start;text-align:right;justify-content:flex-start;padding-top:0}.layout-magazine .content{text-align:right;margin-top:12px}
 .layout-quote .quoteMark{display:block}
-
-.layout-minimal .frame,
-.layout-minimal .smallFrame,
-.layout-minimal .lineSide,
-.layout-minimal .flower,
-.layout-minimal .decor{display:none}
-
-.layout-border .frame{
-border:8px solid var(--gold);
-border-radius:0;
-inset:24px;
-box-shadow:inset 0 0 0 2px var(--navy);
-}
-
-.layout-border .smallFrame{display:none}
+.layout-minimal .frame,.layout-minimal .smallFrame,.layout-minimal .lineSide,.layout-minimal .flower,.layout-minimal .decor{display:none}
+.layout-border .frame{border:8px solid var(--gold);border-radius:0;inset:24px;box-shadow:inset 0 0 0 2px var(--navy)}.layout-border .smallFrame{display:none}
 .layout-chip .chip{display:block}
+.layout-bottom-card .layoutBox{justify-content:flex-end;padding-bottom:35px}.layout-bottom-card .content{background:#fff;border-radius:34px;padding:38px 28px;box-shadow:0 18px 45px rgba(0,0,0,.11)}
+.layout-editorial .layoutBox{justify-content:flex-start;padding-top:0}.layout-editorial .content{font-size:31px;line-height:2.15;text-align:right;margin-top:10px}
+.layout-poetry .content{font-family:'Amiri',serif;font-size:38px;line-height:2.4}
+.layout-ayah .content{color:var(--green);background:#f5f8f5;border-radius:30px;padding:35px 25px;border:1px solid rgba(15,107,85,.12)}
+.layout-list .content{display:none}.layout-list .numList{display:block}
+.layout-pinterest .content{background:#fff;border-radius:34px;padding:46px 30px;box-shadow:0 25px 60px rgba(0,0,0,.13);transform:rotate(-1deg)}
+.layout-stamp .content{border:2px dashed rgba(199,154,69,.7);padding:42px 28px;border-radius:28px}
+.layout-luxury-dark{background:#111827}.layout-luxury-dark .content{color:white;background:rgba(255,255,255,.06);border-radius:30px;padding:40px 28px}
+.layout-takbeer .layoutBox{align-items:center;justify-content:flex-start;padding-top:20px;gap:24px}.layout-takbeer .kicker{font-family:'Changa',sans-serif;font-size:28px;font-weight:800;color:#16877e;line-height:1.3}.layout-takbeer .content{font-family:'Changa',sans-serif;font-weight:500;font-size:42px;line-height:1.85;color:#111;text-align:center}.layout-takbeer .content::after{content:"";display:block;height:3px;background:#111;width:92%;margin:28px auto 18px}.layout-takbeer .source{font-family:'Changa',sans-serif;font-size:22px;font-weight:700;color:#111}.layout-takbeer .frame,.layout-takbeer .smallFrame,.layout-takbeer .lineSide,.layout-takbeer .flower,.layout-takbeer .decor{display:none}
+.quoteMark,.chip,.numList{display:none}.layout-quote .quoteMark,.layout-chip .chip,.layout-list .numList{display:block}
+.hideDecor .flower,.hideDecor .decor{display:none}.hideFrames .frame,.hideFrames .smallFrame{display:none}.hideLines .lineSide{display:none}
 
-.layout-bottom-card .layoutBox{
-justify-content:flex-end;
-padding-bottom:35px;
-}
-
-.layout-bottom-card .content{
-background:#fff;
-border-radius:34px;
-padding:38px 28px;
-box-shadow:0 18px 45px rgba(0,0,0,.11);
-}
-
-.layout-editorial .layoutBox{
-justify-content:flex-start;
-padding-top:0;
-}
-
-.layout-editorial .content{
-font-size:31px;
-line-height:2.15;
-text-align:right;
-margin-top:10px;
-}
-
-.layout-poetry .content{
-font-family:'Amiri',serif;
-font-size:38px;
-line-height:2.4;
-}
-
-.layout-ayah .content{
-color:var(--green);
-background:#f5f8f5;
-border-radius:30px;
-padding:35px 25px;
-border:1px solid rgba(15,107,85,.12);
-}
-
-.layout-list .content{display:none}
-.layout-list .numList{display:block}
-
-.layout-pinterest .content{
-background:#fff;
-border-radius:34px;
-padding:46px 30px;
-box-shadow:0 25px 60px rgba(0,0,0,.13);
-transform:rotate(-1deg);
-}
-
-.layout-stamp .content{
-border:2px dashed rgba(199,154,69,.7);
-padding:42px 28px;
-border-radius:28px;
-}
-
-.layout-luxury-dark{
-background:#111827;
-}
-
-.layout-luxury-dark .content{
-color:white;
-background:rgba(255,255,255,.06);
-border-radius:30px;
-padding:40px 28px;
-}
-
-.layout-takbeer .layoutBox{
-align-items:center;
-justify-content:flex-start;
-padding-top:20px;
-gap:24px;
-}
-
-.layout-takbeer .kicker{
-font-family:'Changa',sans-serif;
-font-size:28px;
-font-weight:800;
-color:#16877e;
-line-height:1.3;
-}
-
-.layout-takbeer .content{
-font-family:'Changa',sans-serif;
-font-weight:500;
-font-size:42px;
-line-height:1.85;
-color:#111;
-text-align:center;
-}
-
-.layout-takbeer .content::after{
-content:"";
-display:block;
-height:3px;
-background:#111;
-width:92%;
-margin:28px auto 18px;
-}
-
-.layout-takbeer .source{
-font-family:'Changa',sans-serif;
-font-size:22px;
-font-weight:700;
-color:#111;
-}
-
-.layout-takbeer .frame,
-.layout-takbeer .smallFrame,
-.layout-takbeer .lineSide,
-.layout-takbeer .flower,
-.layout-takbeer .decor{
-display:none;
-}
-
-.quoteMark,
-.chip,
-.numList{
-display:none;
-}
-
-.layout-quote .quoteMark,
-.layout-chip .chip,
-.layout-list .numList{
-display:block;
-}
-
-.hideDecor .flower,
-.hideDecor .decor{display:none}
-
-.hideFrames .frame,
-.hideFrames .smallFrame{display:none}
-
-.hideLines .lineSide{display:none}
-
-@media(max-width:1100px){
-.wrapper{grid-template-columns:1fr}
-.controls{position:relative;top:auto;max-height:none}
-}
+@media(max-width:1100px){.wrapper{grid-template-columns:1fr}.controls{position:relative;top:auto;max-height:none}.phone{width:390px;height:690px}}
 </style>
 </head>
 
 <body>
-
 <div class="wrapper">
-
 <div class="controls">
-
 <div class="logo">Asfar Studio Pro</div>
 <div class="sub">استوديو حالات واتساب عربية فاخرة.</div>
 
 <details class="accordion" open>
 <summary>النص</summary>
 <div class="inside">
-
-<div class="group">
-<label>اكتب النص</label>
-<textarea id="textInput">📚 💡 🌟
+<div class="group"><label>اكتب النص</label><textarea id="textInput">📚 💡 🌟
 
 قال الرافعي رحمه الله:
 
 "وأشقى الناس من يتوقع الشقاء
 فهو يتوهم الخوف ثم يخاف مما
 يتوهم ثم يخاف أن يكون الأمر
-أكبر مما توهم!"</textarea>
-</div>
-
-<div class="group">
-<label>التصنيف</label>
-<input type="text" id="kickerInput" value="ومضات يقين">
-</div>
-
-<div class="group">
-<label>المصدر</label>
-<input type="text" id="sourceInput" value="رسالة طمأنينة">
-</div>
-
+أكبر مما توهم!"</textarea></div>
+<div class="group"><label>التصنيف</label><input type="text" id="kickerInput" value="ومضات يقين"></div>
+<div class="group"><label>المصدر</label><input type="text" id="sourceInput" value="رسالة طمأنينة"></div>
 </div>
 </details>
 
 <details class="accordion" open>
 <summary>تنسيق النص</summary>
 <div class="inside">
-
-<div class="group">
-<label>أحجام جاهزة</label>
-<div class="optionGrid">
+<div class="group"><label>أحجام جاهزة</label><div class="optionGrid">
 <button class="tempBtn" style="background:#4b5563" onclick="setTextSizePreset('small')">صغير</button>
 <button class="tempBtn" style="background:#1d2945" onclick="setTextSizePreset('medium')">متوسط</button>
 <button class="tempBtn" style="background:#c79a45" onclick="setTextSizePreset('large')">كبير</button>
 <button class="tempBtn" style="background:#0f6b55" onclick="setTextSizePreset('xlarge')">كبير جدًا</button>
-</div>
-</div>
-
-<div class="group">
-<label>التحكم الآمن</label>
-<div class="optionGrid">
+</div></div>
+<div class="group"><label>التحكم الآمن</label><div class="optionGrid">
 <button class="tempBtn" style="background:#0f6b55" onclick="safeFit()">منع الخروج</button>
 <button class="tempBtn" style="background:#1d2945" onclick="fitLongText()">نص طويل</button>
 <button class="tempBtn" style="background:#c79a45" onclick="fitShortText()">نص قصير</button>
 <button class="tempBtn" style="background:#7b5b3a" onclick="resetTextControl()">إعادة الضبط</button>
-</div>
-</div>
-
-<div class="group">
-<label>حجم الخط</label>
-<div class="rangeBox">
-<input type="range" id="fontSize" min="18" max="76" value="34">
-<div class="rangeValue" id="fontSizeValue">34px</div>
-</div>
-</div>
-
-<div class="group">
-<label>تباعد الأسطر</label>
-<div class="rangeBox">
-<input type="range" id="lineHeight" min="1.1" max="3" step="0.1" value="1.9">
-<div class="rangeValue" id="lineHeightValue">1.9</div>
-</div>
-</div>
-
-<div class="group">
-<label>عرض النص</label>
-<div class="rangeBox">
-<input type="range" id="widthRange" min="55" max="100" value="100">
-<div class="rangeValue" id="widthValue">100%</div>
-</div>
-</div>
-
-<div class="group">
-<label>ارتفاع النص من الأعلى</label>
-<div class="rangeBox">
-<input type="range" id="topSpace" min="0" max="160" value="0">
-<div class="rangeValue" id="topSpaceValue">0</div>
-</div>
-</div>
-
-<div class="group">
-<label>المسافة بين العناصر</label>
-<div class="rangeBox">
-<input type="range" id="gapRange" min="0" max="45" value="12">
-<div class="rangeValue" id="gapValue">12</div>
-</div>
-</div>
-
-<div class="group">
-<label>سُمك الخط</label>
-<div class="rangeBox">
-<input type="range" id="fontWeight" min="300" max="900" step="100" value="400">
-<div class="rangeValue" id="fontWeightValue">400</div>
-</div>
-</div>
-
-<div class="group">
-<label>تباعد الحروف</label>
-<div class="rangeBox">
-<input type="range" id="letterSpacing" min="-2" max="8" step="0.5" value="0">
-<div class="rangeValue" id="letterSpacingValue">0</div>
-</div>
-</div>
-
-<div class="group">
-<label>تباعد الكلمات</label>
-<div class="rangeBox">
-<input type="range" id="wordSpacing" min="0" max="20" step="1" value="0">
-<div class="rangeValue" id="wordSpacingValue">0</div>
-</div>
-</div>
-
-<div class="group">
-<label>حشو داخل النص</label>
-<div class="rangeBox">
-<input type="range" id="textPadding" min="0" max="60" value="0">
-<div class="rangeValue" id="textPaddingValue">0</div>
-</div>
-</div>
-
-<div class="group">
-<label>محاذاة النص</label>
-<div class="optionGrid three">
+</div></div>
+<div class="group"><label>حجم الخط</label><div class="rangeBox"><input type="range" id="fontSize" min="18" max="76" value="34"><div class="rangeValue" id="fontSizeValue">34px</div></div></div>
+<div class="group"><label>تباعد الأسطر</label><div class="rangeBox"><input type="range" id="lineHeight" min="1.1" max="3" step="0.1" value="1.9"><div class="rangeValue" id="lineHeightValue">1.9</div></div></div>
+<div class="group"><label>عرض النص</label><div class="rangeBox"><input type="range" id="widthRange" min="55" max="100" value="100"><div class="rangeValue" id="widthValue">100%</div></div></div>
+<div class="group"><label>ارتفاع النص من الأعلى</label><div class="rangeBox"><input type="range" id="topSpace" min="0" max="160" value="0"><div class="rangeValue" id="topSpaceValue">0</div></div></div>
+<div class="group"><label>المسافة بين العناصر</label><div class="rangeBox"><input type="range" id="gapRange" min="0" max="45" value="12"><div class="rangeValue" id="gapValue">12</div></div></div>
+<div class="group"><label>سُمك الخط</label><div class="rangeBox"><input type="range" id="fontWeight" min="300" max="900" step="100" value="400"><div class="rangeValue" id="fontWeightValue">400</div></div></div>
+<div class="group"><label>تباعد الحروف</label><div class="rangeBox"><input type="range" id="letterSpacing" min="-2" max="8" step="0.5" value="0"><div class="rangeValue" id="letterSpacingValue">0</div></div></div>
+<div class="group"><label>تباعد الكلمات</label><div class="rangeBox"><input type="range" id="wordSpacing" min="0" max="20" step="1" value="0"><div class="rangeValue" id="wordSpacingValue">0</div></div></div>
+<div class="group"><label>حشو داخل النص</label><div class="rangeBox"><input type="range" id="textPadding" min="0" max="60" value="0"><div class="rangeValue" id="textPaddingValue">0</div></div></div>
+<div class="group"><label>ظل النص</label><select id="textShadow">
+<option value="none">بدون</option><option value="0 2px 10px rgba(0,0,0,.15)">خفيف</option><option value="0 4px 20px rgba(0,0,0,.25)">قوي</option>
+</select></div>
+<div class="group"><label>محاذاة النص</label><div class="optionGrid three">
 <button class="tempBtn" style="background:#1d2945" onclick="setAlign('right')">يمين</button>
 <button class="tempBtn" style="background:#c79a45" onclick="setAlign('center')">وسط</button>
 <button class="tempBtn" style="background:#0f6b55" onclick="setAlign('left')">يسار</button>
-</div>
-</div>
-
+</div></div>
 </div>
 </details>
 
-<details class="accordion">
-<summary>التنسيقات الجاهزة</summary>
-<div class="inside">
-<div class="optionGrid">
-
+<details class="accordion"><summary>التنسيقات الجاهزة</summary><div class="inside"><div class="optionGrid">
 <button class="tempBtn" style="background:#16877e" onclick="setTakbeerStyle()">تكبير العيد</button>
 <button class="tempBtn" style="background:#1d2945" onclick="setLayout('layout-center')">وسط</button>
 <button class="tempBtn" style="background:#c79a45" onclick="setLayout('layout-card')">بطاقة</button>
@@ -795,16 +172,9 @@ display:block;
 <button class="tempBtn" style="background:#7c5f46" onclick="setLayout('layout-pinterest')">Pinterest</button>
 <button class="tempBtn" style="background:#b68a63" onclick="setLayout('layout-stamp')">منقط</button>
 <button class="tempBtn" style="background:#111827" onclick="setLayout('layout-luxury-dark')">داكن</button>
+</div></div></details>
 
-</div>
-</div>
-</details>
-
-<details class="accordion">
-<summary>الخلفيات</summary>
-<div class="inside">
-<div class="optionGrid">
-
+<details class="accordion"><summary>الخلفيات</summary><div class="inside"><div class="optionGrid">
 <button class="tempBtn" style="background:#ffffff;color:#1d2945;border:1px solid #ddd" onclick="setBackground('bg-white')">أبيض</button>
 <button class="tempBtn" style="background:#f8f3e9;color:#1d2945" onclick="setBackground('bg-cream')">كريمي</button>
 <button class="tempBtn" style="background:#dfe4ee;color:#1d2945" onclick="setBackground('bg-grid')">شبكة</button>
@@ -818,36 +188,13 @@ display:block;
 <button class="tempBtn" style="background:#efe5d5;color:#1d2945" onclick="setBackground('bg-book')">كتاب</button>
 <button class="tempBtn" style="background:#b68a63" onclick="setBackground('bg-islamic')">زخرفة</button>
 <button class="tempBtn" style="background:#d5d8de;color:#1d2945" onclick="setBackground('bg-islamic-lux')">زخرفة فاخرة</button>
+<button class="tempBtn" style="background:#c7ccd6;color:#1d2945" onclick="setBackground('bg-islamic-clear')">زخرفة واضحة</button>
+</div></div></details>
 
-</div>
-</div>
-</details>
-
-<details class="accordion">
-<summary>الخطوط</summary>
-<div class="inside">
-
-<div class="group">
-<label>نوع الخط</label>
-<select id="fontFamily">
-<option value="Changa">Changa</option>
-<option value="El Messiri">El Messiri</option>
-<option value="Cairo">Cairo</option>
-<option value="Tajawal">Tajawal</option>
-<option value="Amiri">Amiri</option>
-<option value="Aref Ruqaa">Aref Ruqaa</option>
-<option value="Lateef">Lateef</option>
-<option value="Scheherazade New">Scheherazade New</option>
-<option value="Noto Naskh Arabic">Noto Naskh Arabic</option>
-<option value="Almarai">Almarai</option>
-<option value="IBM Plex Sans Arabic">IBM Plex Sans Arabic</option>
-<option value="Readex Pro">Readex Pro</option>
-<option value="Reem Kufi">Reem Kufi</option>
-<option value="Noto Kufi Arabic">Noto Kufi Arabic</option>
-<option value="Marhey">Marhey</option>
-</select>
-</div>
-
+<details class="accordion"><summary>الخطوط</summary><div class="inside">
+<div class="group"><label>نوع الخط</label><select id="fontFamily">
+<option value="Changa">Changa</option><option value="El Messiri">El Messiri</option><option value="Cairo">Cairo</option><option value="Tajawal">Tajawal</option><option value="Amiri">Amiri</option><option value="Aref Ruqaa">Aref Ruqaa</option><option value="Lateef">Lateef</option><option value="Scheherazade New">Scheherazade New</option><option value="Noto Naskh Arabic">Noto Naskh Arabic</option><option value="Almarai">Almarai</option><option value="IBM Plex Sans Arabic">IBM Plex Sans Arabic</option><option value="Readex Pro">Readex Pro</option><option value="Reem Kufi">Reem Kufi</option><option value="Noto Kufi Arabic">Noto Kufi Arabic</option><option value="Marhey">Marhey</option>
+</select></div>
 <div class="optionGrid">
 <button class="tempBtn" style="background:#16877e" onclick="setFont('Changa')">شانجا</button>
 <button class="tempBtn" style="background:#1d2945" onclick="setFont('Cairo')">القاهرة</button>
@@ -859,20 +206,10 @@ display:block;
 <button class="tempBtn" style="background:#6f4ca1" onclick="setFont('Readex Pro')">ريدكس</button>
 <button class="tempBtn" style="background:#111827" onclick="setFont('Noto Kufi Arabic')">كوفي واضح</button>
 <button class="tempBtn" style="background:#1d2b7b" onclick="setFont('IBM Plex Sans Arabic')">IBM</button>
-</div>
+</div></div></details>
 
-</div>
-</details>
-
-<details class="accordion">
-<summary>ألوان النص</summary>
-<div class="inside">
-
-<div class="group">
-<label>لون مخصص</label>
-<input type="color" id="textColor" value="#172033">
-</div>
-
+<details class="accordion"><summary>ألوان النص</summary><div class="inside">
+<div class="group"><label>لون مخصص</label><input type="color" id="textColor" value="#172033"></div>
 <div class="optionGrid">
 <button class="tempBtn" style="background:#1d2945" onclick="setTextColor('#1d2945')">كحلي</button>
 <button class="tempBtn" style="background:#c79a45" onclick="setTextColor('#c79a45')">ذهبي</button>
@@ -881,52 +218,26 @@ display:block;
 <button class="tempBtn" style="background:#000" onclick="setTextColor('#000')">أسود</button>
 <button class="tempBtn" style="background:#6f4ca1" onclick="setTextColor('#6f4ca1')">بنفسجي</button>
 <button class="tempBtn" style="background:#fff;color:#111;border:1px solid #ddd" onclick="setTextColor('#ffffff')">أبيض</button>
-</div>
+</div></div></details>
 
-</div>
-</details>
-
-<details class="accordion">
-<summary>إظهار وإخفاء</summary>
-<div class="inside">
-<div class="optionGrid">
+<details class="accordion"><summary>إظهار وإخفاء</summary><div class="inside"><div class="optionGrid">
 <button class="tempBtn" style="background:#1d2945" onclick="toggleDecor()">الزخارف</button>
 <button class="tempBtn" style="background:#c79a45" onclick="toggleFrames()">الإطارات</button>
 <button class="tempBtn" style="background:#0f6b55" onclick="toggleLines()">الخطوط الجانبية</button>
-</div>
-</div>
-</details>
+</div></div></details>
 
 <button class="download" onclick="downloadImage()">تحميل الحالة</button>
-
 </div>
 
 <div class="previewArea">
 <div class="previewLabel">معاينة واتساب</div>
-
-<div class="phone">
-<div class="screen">
-
+<div class="phone"><div class="screen">
 <div class="status layout-center" id="statusCard">
-
 <div class="bgLayer bg-cream" id="bgLayer"></div>
-
-<div class="flower f1">✿</div>
-<div class="flower f2">❀</div>
-<div class="decor decor1">❋</div>
-<div class="decor decor2">✦</div>
-
-<div class="lineSide lineLeft"></div>
-<div class="lineSide lineRight"></div>
-<div class="frame"></div>
-<div class="smallFrame"></div>
-
+<div class="flower f1">✿</div><div class="flower f2">❀</div><div class="decor decor1">❋</div><div class="decor decor2">✦</div>
+<div class="lineSide lineLeft"></div><div class="lineSide lineRight"></div><div class="frame"></div><div class="smallFrame"></div>
 <div class="layoutBox" id="layoutBox">
-
-<div class="kicker" id="previewKicker">ومضات يقين</div>
-<div class="chip" id="previewChip">ومضات يقين</div>
-<div class="quoteMark">“</div>
-
+<div class="kicker" id="previewKicker">ومضات يقين</div><div class="chip" id="previewChip">ومضات يقين</div><div class="quoteMark">“</div>
 <div class="content" id="previewText">📚 💡 🌟
 
 قال الرافعي رحمه الله:
@@ -935,318 +246,45 @@ display:block;
 فهو يتوهم الخوف ثم يخاف مما
 يتوهم ثم يخاف أن يكون الأمر
 أكبر مما توهم!"</div>
-
-<div class="numList">
-<div><b>١.</b> الغسل.</div>
-<div><b>٢.</b> الطيب.</div>
-<div><b>٣.</b> السواك.</div>
-<div><b>٤.</b> قراءة سورة الكهف.</div>
-<div><b>٥.</b> الصلاة على النبي ﷺ.</div>
-</div>
-
+<div class="numList"><div><b>١.</b> الغسل.</div><div><b>٢.</b> الطيب.</div><div><b>٣.</b> السواك.</div><div><b>٤.</b> قراءة سورة الكهف.</div><div><b>٥.</b> الصلاة على النبي ﷺ.</div></div>
 <div class="source" id="previewSource">رسالة طمأنينة</div>
-</div>
-
-</div>
-
-</div>
-</div>
-</div>
-
+</div></div></div></div></div>
 </div>
 
 <script>
-const statusCard = document.getElementById("statusCard");
-const bgLayer = document.getElementById("bgLayer");
-const layoutBox = document.getElementById("layoutBox");
+const statusCard=document.getElementById("statusCard"),bgLayer=document.getElementById("bgLayer"),layoutBox=document.getElementById("layoutBox");
+const textInput=document.getElementById("textInput"),kickerInput=document.getElementById("kickerInput"),sourceInput=document.getElementById("sourceInput");
+const previewText=document.getElementById("previewText"),previewKicker=document.getElementById("previewKicker"),previewChip=document.getElementById("previewChip"),previewSource=document.getElementById("previewSource");
+const fontFamily=document.getElementById("fontFamily"),fontSize=document.getElementById("fontSize"),lineHeight=document.getElementById("lineHeight"),widthRange=document.getElementById("widthRange"),textColor=document.getElementById("textColor");
+const topSpace=document.getElementById("topSpace"),gapRange=document.getElementById("gapRange"),fontWeight=document.getElementById("fontWeight"),letterSpacing=document.getElementById("letterSpacing"),wordSpacing=document.getElementById("wordSpacing"),textPadding=document.getElementById("textPadding"),textShadow=document.getElementById("textShadow");
 
-const textInput = document.getElementById("textInput");
-const kickerInput = document.getElementById("kickerInput");
-const sourceInput = document.getElementById("sourceInput");
+textInput.addEventListener("input",()=>{previewText.innerText=textInput.value;safeFit()});
+kickerInput.addEventListener("input",()=>{previewKicker.innerText=kickerInput.value;previewChip.innerText=kickerInput.value;safeFit()});
+sourceInput.addEventListener("input",()=>{previewSource.innerText=sourceInput.value;safeFit()});
+fontFamily.addEventListener("change",()=>setFont(fontFamily.value));
+[fontSize,lineHeight,widthRange,topSpace,gapRange,fontWeight,letterSpacing,wordSpacing,textPadding].forEach(el=>el.addEventListener("input",()=>{applyControlStyles();syncControls();safeFit()}));
+textColor.addEventListener("input",()=>previewText.style.color=textColor.value);
+textShadow.addEventListener("change",()=>previewText.style.textShadow=textShadow.value);
 
-const previewText = document.getElementById("previewText");
-const previewKicker = document.getElementById("previewKicker");
-const previewChip = document.getElementById("previewChip");
-const previewSource = document.getElementById("previewSource");
-
-const fontFamily = document.getElementById("fontFamily");
-const fontSize = document.getElementById("fontSize");
-const lineHeight = document.getElementById("lineHeight");
-const widthRange = document.getElementById("widthRange");
-const textColor = document.getElementById("textColor");
-
-const topSpace = document.getElementById("topSpace");
-const gapRange = document.getElementById("gapRange");
-const fontWeight = document.getElementById("fontWeight");
-const letterSpacing = document.getElementById("letterSpacing");
-const wordSpacing = document.getElementById("wordSpacing");
-const textPadding = document.getElementById("textPadding");
-
-textInput.addEventListener("input", ()=>{
-previewText.innerText = textInput.value;
-safeFit();
-});
-
-kickerInput.addEventListener("input", ()=>{
-previewKicker.innerText = kickerInput.value;
-previewChip.innerText = kickerInput.value;
-safeFit();
-});
-
-sourceInput.addEventListener("input", ()=>{
-previewSource.innerText = sourceInput.value;
-safeFit();
-});
-
-fontFamily.addEventListener("change", ()=>{
-setFont(fontFamily.value);
-});
-
-fontSize.addEventListener("input", ()=>{
-applyControlStyles();
-syncControls();
-safeFit();
-});
-
-lineHeight.addEventListener("input", ()=>{
-applyControlStyles();
-syncControls();
-safeFit();
-});
-
-widthRange.addEventListener("input", ()=>{
-applyControlStyles();
-syncControls();
-safeFit();
-});
-
-topSpace.addEventListener("input", ()=>{
-applyControlStyles();
-syncControls();
-safeFit();
-});
-
-gapRange.addEventListener("input", ()=>{
-applyControlStyles();
-syncControls();
-safeFit();
-});
-
-fontWeight.addEventListener("input", ()=>{
-applyControlStyles();
-syncControls();
-safeFit();
-});
-
-letterSpacing.addEventListener("input", ()=>{
-applyControlStyles();
-syncControls();
-safeFit();
-});
-
-wordSpacing.addEventListener("input", ()=>{
-applyControlStyles();
-syncControls();
-safeFit();
-});
-
-textPadding.addEventListener("input", ()=>{
-applyControlStyles();
-syncControls();
-safeFit();
-});
-
-textColor.addEventListener("input", ()=>{
-previewText.style.color = textColor.value;
-});
-
-function setLayout(layout){
-statusCard.className = "status " + layout;
-safeFit();
-}
-
-function setTakbeerStyle(){
-setLayout("layout-takbeer");
-setBackground("bg-white");
-setFont("Changa");
-setTextColor("#111111");
-fontWeight.value = 500;
-fontSize.value = 42;
-lineHeight.value = 1.85;
-widthRange.value = 100;
-topSpace.value = 20;
-gapRange.value = 24;
-syncControls();
-applyControlStyles();
-safeFit();
-}
-
-function setBackground(bg){
-bgLayer.className = "bgLayer " + bg;
-safeFit();
-}
-
-function setTextColor(color){
-previewText.style.color = color;
-textColor.value = color;
-}
-
-function setFont(font){
-previewText.style.fontFamily = font;
-fontFamily.value = font;
-safeFit();
-}
-
-function setAlign(align){
-previewText.style.textAlign = align;
-safeFit();
-}
-
-function toggleDecor(){
-statusCard.classList.toggle("hideDecor");
-}
-
-function toggleFrames(){
-statusCard.classList.toggle("hideFrames");
-}
-
-function toggleLines(){
-statusCard.classList.toggle("hideLines");
-}
-
-function setTextSizePreset(size){
-if(size === "small"){
-fontSize.value = 26;
-lineHeight.value = 1.8;
-}
-if(size === "medium"){
-fontSize.value = 34;
-lineHeight.value = 1.9;
-}
-if(size === "large"){
-fontSize.value = 42;
-lineHeight.value = 1.8;
-}
-if(size === "xlarge"){
-fontSize.value = 50;
-lineHeight.value = 1.65;
-}
-syncControls();
-applyControlStyles();
-safeFit();
-}
-
-function fitLongText(){
-fontSize.value = 28;
-lineHeight.value = 1.75;
-widthRange.value = 100;
-topSpace.value = 0;
-gapRange.value = 8;
-syncControls();
-applyControlStyles();
-safeFit();
-}
-
-function fitShortText(){
-fontSize.value = 44;
-lineHeight.value = 1.8;
-widthRange.value = 95;
-topSpace.value = 25;
-gapRange.value = 18;
-syncControls();
-applyControlStyles();
-safeFit();
-}
-
-function resetTextControl(){
-fontSize.value = 34;
-lineHeight.value = 1.9;
-widthRange.value = 100;
-topSpace.value = 0;
-gapRange.value = 12;
-fontWeight.value = 400;
-letterSpacing.value = 0;
-wordSpacing.value = 0;
-textPadding.value = 0;
-syncControls();
-applyControlStyles();
-safeFit();
-}
-
-function getAvailableTextHeight(){
-const style = getComputedStyle(layoutBox);
-const gap = parseFloat(style.gap) || 0;
-let used = 0;
-
-Array.from(layoutBox.children).forEach(child=>{
-if(child === previewText) return;
-if(getComputedStyle(child).display === "none") return;
-used += child.offsetHeight + gap;
-});
-
-return layoutBox.clientHeight - used - 12;
-}
-
-function safeFit(){
-applyControlStyles();
-
-let size = parseInt(fontSize.value);
-let minSize = 16;
-let maxHeight = getAvailableTextHeight();
-
-previewText.style.fontSize = size + "px";
-
-while(previewText.scrollHeight > maxHeight && size > minSize){
-size--;
-previewText.style.fontSize = size + "px";
-}
-
-/* لا نكبّر النص تلقائيًا أبدًا */
-}
-
-function applyControlStyles(){
-previewText.style.fontSize = fontSize.value + "px";
-previewText.style.lineHeight = lineHeight.value;
-previewText.style.width = widthRange.value + "%";
-previewText.style.fontWeight = fontWeight.value;
-previewText.style.letterSpacing = letterSpacing.value + "px";
-previewText.style.wordSpacing = wordSpacing.value + "px";
-previewText.style.padding = textPadding.value + "px";
-layoutBox.style.paddingTop = topSpace.value + "px";
-layoutBox.style.gap = gapRange.value + "px";
-}
-
-function syncControls(){
-document.getElementById("fontSizeValue").innerText = fontSize.value + "px";
-document.getElementById("lineHeightValue").innerText = lineHeight.value;
-document.getElementById("widthValue").innerText = widthRange.value + "%";
-document.getElementById("topSpaceValue").innerText = topSpace.value;
-document.getElementById("gapValue").innerText = gapRange.value;
-document.getElementById("fontWeightValue").innerText = fontWeight.value;
-document.getElementById("letterSpacingValue").innerText = letterSpacing.value;
-document.getElementById("wordSpacingValue").innerText = wordSpacing.value;
-document.getElementById("textPaddingValue").innerText = textPadding.value;
-}
-
-async function downloadImage(){
-safeFit();
-
-const canvas = await html2canvas(statusCard,{
-scale:4,
-backgroundColor:null
-});
-
-const link = document.createElement("a");
-link.download = "asfar-whatsapp-status.png";
-link.href = canvas.toDataURL("image/png");
-link.click();
-}
-
-previewText.style.fontFamily = "Amiri";
-applyControlStyles();
-syncControls();
-safeFit();
+function setLayout(layout){statusCard.className="status "+layout;safeFit()}
+function setTakbeerStyle(){setLayout("layout-takbeer");setBackground("bg-white");setFont("Changa");setTextColor("#111111");fontWeight.value=500;fontSize.value=42;lineHeight.value=1.85;widthRange.value=100;topSpace.value=20;gapRange.value=24;syncControls();applyControlStyles();safeFit()}
+function setBackground(bg){bgLayer.className="bgLayer "+bg;safeFit()}
+function setTextColor(color){previewText.style.color=color;textColor.value=color}
+function setFont(font){previewText.style.fontFamily=font;fontFamily.value=font;safeFit()}
+function setAlign(align){previewText.style.textAlign=align;safeFit()}
+function toggleDecor(){statusCard.classList.toggle("hideDecor")}
+function toggleFrames(){statusCard.classList.toggle("hideFrames")}
+function toggleLines(){statusCard.classList.toggle("hideLines")}
+function setTextSizePreset(size){if(size==="small"){fontSize.value=26;lineHeight.value=1.8}if(size==="medium"){fontSize.value=34;lineHeight.value=1.9}if(size==="large"){fontSize.value=42;lineHeight.value=1.75}if(size==="xlarge"){fontSize.value=50;lineHeight.value=1.65}syncControls();applyControlStyles();safeFit()}
+function fitLongText(){fontSize.value=28;lineHeight.value=1.75;widthRange.value=100;topSpace.value=0;gapRange.value=8;syncControls();applyControlStyles();safeFit()}
+function fitShortText(){fontSize.value=44;lineHeight.value=1.8;widthRange.value=95;topSpace.value=25;gapRange.value=18;syncControls();applyControlStyles();safeFit()}
+function resetTextControl(){fontSize.value=34;lineHeight.value=1.9;widthRange.value=100;topSpace.value=0;gapRange.value=12;fontWeight.value=400;letterSpacing.value=0;wordSpacing.value=0;textPadding.value=0;textShadow.value="none";syncControls();applyControlStyles();safeFit()}
+function getAvailableTextHeight(){const style=getComputedStyle(layoutBox);const gap=parseFloat(style.gap)||0;let used=0;Array.from(layoutBox.children).forEach(child=>{if(child===previewText)return;if(getComputedStyle(child).display==="none")return;used+=child.offsetHeight+gap});return layoutBox.clientHeight-used-12}
+function safeFit(){applyControlStyles();let size=parseInt(fontSize.value),minSize=16,maxHeight=getAvailableTextHeight();previewText.style.fontSize=size+"px";while(previewText.scrollHeight>maxHeight&&size>minSize){size--;previewText.style.fontSize=size+"px"}}
+function applyControlStyles(){previewText.style.fontSize=fontSize.value+"px";previewText.style.lineHeight=lineHeight.value;previewText.style.width=widthRange.value+"%";previewText.style.fontWeight=fontWeight.value;previewText.style.letterSpacing=letterSpacing.value+"px";previewText.style.wordSpacing=wordSpacing.value+"px";previewText.style.padding=textPadding.value+"px";previewText.style.textShadow=textShadow.value;layoutBox.style.paddingTop=topSpace.value+"px";layoutBox.style.gap=gapRange.value+"px"}
+function syncControls(){document.getElementById("fontSizeValue").innerText=fontSize.value+"px";document.getElementById("lineHeightValue").innerText=lineHeight.value;document.getElementById("widthValue").innerText=widthRange.value+"%";document.getElementById("topSpaceValue").innerText=topSpace.value;document.getElementById("gapValue").innerText=gapRange.value;document.getElementById("fontWeightValue").innerText=fontWeight.value;document.getElementById("letterSpacingValue").innerText=letterSpacing.value;document.getElementById("wordSpacingValue").innerText=wordSpacing.value;document.getElementById("textPaddingValue").innerText=textPadding.value}
+async function downloadImage(){safeFit();const canvas=await html2canvas(statusCard,{scale:4,backgroundColor:null});const link=document.createElement("a");link.download="asfar-whatsapp-status.png";link.href=canvas.toDataURL("image/png");link.click()}
+previewText.style.fontFamily="Amiri";applyControlStyles();syncControls();safeFit();
 </script>
-
 </body>
 </html>
