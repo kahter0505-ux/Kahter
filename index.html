@@ -41,12 +41,6 @@
 --stickerOpacity:1;
 --stickerX:50%;
 --stickerY:14%;
---bgTextSize:70px;
---bgTextOpacity:.08;
---bgTextColor:#1f2a44;
---bgTextX:50%;
---bgTextY:52%;
---bgTextRotate:0deg;
 }
 
 *{box-sizing:border-box;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
@@ -69,39 +63,20 @@ textarea{height:140px;resize:none;line-height:1.9}
 .btn-option{padding:13px;border-radius:16px;font-size:13px;font-weight:900;text-align:center;cursor:pointer;background:#fff;box-shadow:inset 0 0 0 1px #e2e8f0}
 .btn-option.active{box-shadow:0 0 0 2px rgba(201,164,93,.45)}
 button{width:100%;border:none;border-radius:18px;padding:16px;font-size:15px;font-weight:900;font-family:'IBM Plex Sans Arabic',sans-serif;background:linear-gradient(135deg,#24324c,#111827);color:white;cursor:pointer}
+.delete-btn{background:#fff;color:#b91c1c;box-shadow:inset 0 0 0 1px #fecaca}
 .stage{display:flex;flex-direction:column;align-items:center;gap:12px;position:sticky;top:18px;align-self:start}
 .stage-title{font-size:14px;font-weight:900;color:#334155}
 .story{width:390px;height:690px;background:var(--paper);overflow:hidden;position:relative;box-shadow:0 40px 100px rgba(0,0,0,.18)}
 .bg-image{position:absolute;inset:0;background-size:cover;background-position:var(--posX) var(--posY);transform:scale(var(--scale));filter:blur(var(--blur));z-index:0;display:none}
 .overlay{position:absolute;inset:0;background:rgba(0,0,0,var(--overlay));z-index:1;display:none}
-
-.background-text{
-position:absolute;
-left:var(--bgTextX);
-top:var(--bgTextY);
-transform:translate(-50%,-50%) rotate(var(--bgTextRotate));
-font-family:var(--titleFont);
-font-size:var(--bgTextSize);
-font-weight:900;
-color:var(--bgTextColor);
-opacity:var(--bgTextOpacity);
-z-index:2;
-white-space:pre-line;
-text-align:center;
-line-height:1.35;
-pointer-events:none;
-width:100%;
-padding:0 25px;
-}
-
-.content{position:absolute;top:var(--topSpace);right:var(--sideSpace);left:var(--sideSpace);bottom:var(--bottomSpace);display:flex;flex-direction:column;justify-content:flex-start;z-index:3;max-width:var(--contentWidth);margin:auto}
+.content{position:absolute;top:var(--topSpace);right:var(--sideSpace);left:var(--sideSpace);bottom:var(--bottomSpace);display:flex;flex-direction:column;justify-content:flex-start;z-index:2;max-width:var(--contentWidth);margin:auto}
 .kicker{font-size:13px;font-weight:900;color:var(--kickerColor);margin-bottom:12px;text-align:center}
 .title{font-family:var(--titleFont);font-size:var(--titleSize);font-weight:900;line-height:1.2;margin:0 0 24px;color:var(--titleColor);text-align:center}
 .text{font-family:var(--bodyFont);font-size:var(--textSize);line-height:var(--lineHeight);white-space:pre-line;font-weight:800;color:var(--textColor);text-align:center}
+.text p{margin:0 0 var(--paragraphGap)}
 .source{margin-top:auto;font-size:var(--sourceSize);font-weight:900;color:var(--sourceColor);text-align:center}
-.sticker{position:absolute;left:var(--stickerX);top:var(--stickerY);transform:translate(-50%,-50%);font-size:var(--stickerSize);opacity:var(--stickerOpacity);z-index:4;pointer-events:none}
-.custom-sticker{position:absolute;left:var(--stickerX);top:var(--stickerY);transform:translate(-50%,-50%);width:var(--stickerSize);height:var(--stickerSize);object-fit:contain;opacity:var(--stickerOpacity);z-index:5;display:none;pointer-events:none}
-
+.sticker{position:absolute;left:var(--stickerX);top:var(--stickerY);transform:translate(-50%,-50%);font-size:var(--stickerSize);opacity:var(--stickerOpacity);z-index:3;pointer-events:none}
+.custom-sticker{position:absolute;left:var(--stickerX);top:var(--stickerY);transform:translate(-50%,-50%);width:var(--stickerSize);height:var(--stickerSize);object-fit:contain;opacity:var(--stickerOpacity);z-index:4;display:none;pointer-events:none}
 .poster .content{justify-content:center}
 .poster .title{font-size:calc(var(--titleSize) + 10px)}
 .poster .text{font-size:calc(var(--textSize) + 4px)}
@@ -118,7 +93,9 @@ padding:0 25px;
 .has-image{background:#111}
 .has-image .title,.has-image .text{text-shadow:0 2px 12px rgba(0,0,0,.35)}
 .preview-btn{background:#fff;color:#1f2a44;box-shadow:inset 0 0 0 1px #dbe3ec}
-.delete-btn{background:#fff;color:#b91c1c;box-shadow:inset 0 0 0 1px #fecaca}
+.fullscreen{position:fixed;inset:0;background:rgba(15,23,42,.86);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px}
+.fullscreen.active{display:flex}
+.fullscreen .close{position:absolute;top:18px;left:18px;width:auto;padding:12px 18px;background:#fff;color:#1f2a44}
 
 @media(max-width:900px){
 body{padding:14px}
@@ -134,7 +111,10 @@ body{padding:14px}
 <div class="app">
 
 <div class="sidebar">
-<div class="logo">استوديو الحالات العربية<span>VISUAL PUBLISHING SYSTEM</span></div>
+<div class="logo">
+استوديو الحالات العربية
+<span>VISUAL PUBLISHING SYSTEM</span>
+</div>
 
 <div class="group-title">نمط التصميم</div>
 <div class="group">
@@ -152,15 +132,6 @@ body{padding:14px}
 <div class="group"><label>العنوان</label><input id="titleInput" value="خاطر الزهراني"></div>
 <div class="group"><label>النص</label><textarea id="textInput">"القراءة السطحية وملاحقة القشور تُجهد العين وتُربك العقل، أما الفكر العميق فهو الذي يبني الإنسان."</textarea></div>
 <div class="group"><label>المصدر</label><input id="sourceInput" value="تذكير لطيف"></div>
-
-<div class="group-title">نص في الخلفية</div>
-<div class="group"><label>النص الخلفي</label><textarea id="bgTextInput" placeholder="اكتب نصاً يظهر خلف التصميم مثل: أسفار"></textarea></div>
-<div class="group"><label>لون النص الخلفي</label><input type="color" id="bgTextColor" value="#1f2a44"></div>
-<div class="group"><label>حجم النص الخلفي</label><div class="range"><input type="range" id="bgTextSize" min="20" max="180" value="70"><span id="bgTextSizeVal">70</span></div></div>
-<div class="group"><label>شفافية النص الخلفي</label><div class="range"><input type="range" id="bgTextOpacity" min="0" max="0.5" step="0.01" value="0.08"><span id="bgTextOpacityVal">0.08</span></div></div>
-<div class="group"><label>موضع النص الخلفي أفقي</label><div class="range"><input type="range" id="bgTextX" min="0" max="100" value="50"><span id="bgTextXVal">50</span></div></div>
-<div class="group"><label>موضع النص الخلفي عمودي</label><div class="range"><input type="range" id="bgTextY" min="0" max="100" value="52"><span id="bgTextYVal">52</span></div></div>
-<div class="group"><label>دوران النص الخلفي</label><div class="range"><input type="range" id="bgTextRotate" min="-45" max="45" value="0"><span id="bgTextRotateVal">0</span></div></div>
 
 <div class="group-title">تنسيق النص</div>
 <div class="group">
@@ -195,6 +166,7 @@ body{padding:14px}
 <div class="group"><label>حجم النص</label><div class="range"><input type="range" id="textSize" min="18" max="46" value="25"><span id="textVal">25</span></div></div>
 <div class="group"><label>حجم المصدر</label><div class="range"><input type="range" id="sourceSize" min="10" max="26" value="14"><span id="sourceVal">14</span></div></div>
 <div class="group"><label>تباعد الأسطر</label><div class="range"><input type="range" id="lineHeight" min="1.4" max="2.8" step="0.05" value="2.45"><span id="lineVal">2.45</span></div></div>
+<div class="group"><label>المسافة بين الفقرات</label><div class="range"><input type="range" id="paragraphGap" min="0" max="50" value="18"><span id="paraVal">18</span></div></div>
 
 <div class="group-title">ألوان مفتوحة</div>
 <div class="group">
@@ -220,6 +192,11 @@ body{padding:14px}
 </div>
 
 <div class="group"><label>ارفع خلفية من جهازك</label><input type="file" id="bgUpload" accept="image/*"></div>
+<div class="group"><label>تعتيم الخلفية</label><div class="range"><input type="range" id="overlayRange" min="0" max="0.75" step="0.05" value="0"><span id="overlayVal">0</span></div></div>
+<div class="group"><label>ضبابية الخلفية</label><div class="range"><input type="range" id="blurRange" min="0" max="8" step="1" value="0"><span id="blurVal">0</span></div></div>
+<div class="group"><label>تكبير الخلفية</label><div class="range"><input type="range" id="scaleRange" min="1" max="1.8" step="0.05" value="1"><span id="scaleVal">1</span></div></div>
+<div class="group"><label>موضع الخلفية أفقي</label><div class="range"><input type="range" id="posX" min="0" max="100" value="50"><span id="posXVal">50</span></div></div>
+<div class="group"><label>موضع الخلفية عمودي</label><div class="range"><input type="range" id="posY" min="0" max="100" value="50"><span id="posYVal">50</span></div></div>
 
 <div class="group-title">التخطيط والمسافات</div>
 <div class="group"><label>المسافة العلوية</label><div class="range"><input type="range" id="topSpace" min="10" max="220" value="70"><span id="topVal">70</span></div></div>
@@ -260,7 +237,6 @@ body{padding:14px}
 <div class="story basic align-center" id="capture">
 <div class="bg-image" id="bgImage"></div>
 <div class="overlay"></div>
-<div class="background-text" id="bgTextView"></div>
 
 <div class="content">
 <div class="kicker" id="kickerView">أنس سعيد ولد عم</div>
@@ -273,9 +249,14 @@ body{padding:14px}
 <img class="custom-sticker" id="customSticker">
 </div>
 
-<button class="preview-btn" id="downloadBtn2">تحميل الحالة</button>
+<button class="preview-btn" id="fullPreviewBtn">معاينة بالحجم الكبير</button>
 </div>
 
+</div>
+
+<div class="fullscreen" id="fullscreen">
+<button class="close" id="closeFull">إغلاق</button>
+<div id="fullscreenHolder"></div>
 </div>
 
 <script>
@@ -285,11 +266,13 @@ let hasImage = false;
 let currentAlign = "align-center";
 let hasCustomSticker = false;
 
-function setVar(name,value){document.documentElement.style.setProperty(name,value)}
-
 function applyFont(){
 const font = $("fontSelect").value;
-const set = (t,b)=>{setVar("--titleFont",t);setVar("--bodyFont",b)};
+const set = (t,b)=> {
+document.documentElement.style.setProperty("--titleFont",t);
+document.documentElement.style.setProperty("--bodyFont",b);
+};
+
 if(font==="din") set("'DIN Next Arabic','IBM Plex Sans Arabic','Tajawal',sans-serif","'DIN Next Arabic','IBM Plex Sans Arabic','Tajawal',sans-serif");
 if(font==="tajawal") set("'Tajawal',sans-serif","'Tajawal',sans-serif");
 if(font==="almarai") set("'Almarai',sans-serif","'Almarai',sans-serif");
@@ -305,6 +288,10 @@ if(font==="reem") set("'Reem Kufi',sans-serif","'Reem Kufi',sans-serif");
 if(font==="markazi") set("'Markazi Text',serif","'Markazi Text',serif");
 }
 
+function setVar(name,value){
+document.documentElement.style.setProperty(name,value);
+}
+
 function render(){
 const capture = $("capture");
 capture.className = "story " + currentMode + " " + currentAlign + (hasImage ? " has-image" : "");
@@ -313,19 +300,26 @@ $("kickerView").innerText = $("kickerInput").value;
 $("titleView").innerText = $("titleInput").value;
 $("textView").innerText = $("textInput").value;
 $("sourceView").innerText = $("sourceInput").value;
-$("bgTextView").innerText = $("bgTextInput").value;
 $("stickerView").innerText = hasCustomSticker ? "" : $("stickerSelect").value;
+
 $("customSticker").style.display = hasCustomSticker ? "block" : "none";
 
 setVar("--titleSize",$("titleSize").value+"px");
 setVar("--textSize",$("textSize").value+"px");
 setVar("--sourceSize",$("sourceSize").value+"px");
 setVar("--lineHeight",$("lineHeight").value);
+setVar("--paragraphGap",$("paragraphGap").value+"px");
 
 setVar("--topSpace",$("topSpace").value+"px");
 setVar("--bottomSpace",$("bottomSpace").value+"px");
 setVar("--sideSpace",$("sideSpace").value+"px");
 setVar("--contentWidth",$("contentWidth").value+"px");
+
+setVar("--overlay",$("overlayRange").value);
+setVar("--blur",$("blurRange").value+"px");
+setVar("--scale",$("scaleRange").value);
+setVar("--posX",$("posX").value+"%");
+setVar("--posY",$("posY").value+"%");
 
 setVar("--kickerColor",$("kickerColor").value);
 setVar("--titleColor",$("titleColor").value);
@@ -337,45 +331,86 @@ setVar("--stickerX",$("stickerX").value+"%");
 setVar("--stickerY",$("stickerY").value+"%");
 setVar("--stickerOpacity",$("stickerOpacity").value);
 
-setVar("--bgTextSize",$("bgTextSize").value+"px");
-setVar("--bgTextOpacity",$("bgTextOpacity").value);
-setVar("--bgTextColor",$("bgTextColor").value);
-setVar("--bgTextX",$("bgTextX").value+"%");
-setVar("--bgTextY",$("bgTextY").value+"%");
-setVar("--bgTextRotate",$("bgTextRotate").value+"deg");
-
-["title","text","source","line","top","bottom","side","width","stickerSize","stickerX","stickerY","stickerOpacity","bgTextSize","bgTextOpacity","bgTextX","bgTextY","bgTextRotate"].forEach(key=>{
-const id = key+"Val";
-const input = key==="title" ? "titleSize" : key==="text" ? "textSize" : key==="source" ? "sourceSize" : key==="line" ? "lineHeight" : key;
-if($(id) && $(input)) $(id).innerText = $(input).value;
-});
+$("titleVal").innerText = $("titleSize").value;
+$("textVal").innerText = $("textSize").value;
+$("sourceVal").innerText = $("sourceSize").value;
+$("lineVal").innerText = $("lineHeight").value;
+$("paraVal").innerText = $("paragraphGap").value;
+$("topVal").innerText = $("topSpace").value;
+$("bottomVal").innerText = $("bottomSpace").value;
+$("sideVal").innerText = $("sideSpace").value;
+$("widthVal").innerText = $("contentWidth").value;
+$("overlayVal").innerText = $("overlayRange").value;
+$("blurVal").innerText = $("blurRange").value;
+$("scaleVal").innerText = $("scaleRange").value;
+$("posXVal").innerText = $("posX").value;
+$("posYVal").innerText = $("posY").value;
+$("stickerSizeVal").innerText = $("stickerSize").value;
+$("stickerXVal").innerText = $("stickerX").value;
+$("stickerYVal").innerText = $("stickerY").value;
+$("stickerOpacityVal").innerText = $("stickerOpacity").value;
 
 applyFont();
 }
 
 document.querySelectorAll("[data-mode]").forEach(btn=>{
-btn.onclick=()=>{document.querySelectorAll("[data-mode]").forEach(x=>x.classList.remove("active"));btn.classList.add("active");currentMode=btn.dataset.mode;render()}
+btn.onclick=()=>{
+document.querySelectorAll("[data-mode]").forEach(x=>x.classList.remove("active"));
+btn.classList.add("active");
+currentMode = btn.dataset.mode;
+render();
+};
 });
 
 document.querySelectorAll(".align-btn").forEach(btn=>{
-btn.onclick=()=>{document.querySelectorAll(".align-btn").forEach(x=>x.classList.remove("active"));btn.classList.add("active");currentAlign=btn.dataset.align;render()}
+btn.onclick=()=>{
+document.querySelectorAll(".align-btn").forEach(x=>x.classList.remove("active"));
+btn.classList.add("active");
+currentAlign = btn.dataset.align;
+render();
+};
 });
 
 document.querySelectorAll(".bg-btn").forEach(btn=>{
-btn.onclick=()=>{document.querySelectorAll(".bg-btn").forEach(x=>x.classList.remove("active"));btn.classList.add("active");hasImage=false;$("bgImage").style.backgroundImage="";setVar("--paper",btn.dataset.bg);render()}
+btn.onclick=()=>{
+document.querySelectorAll(".bg-btn").forEach(x=>x.classList.remove("active"));
+btn.classList.add("active");
+hasImage=false;
+$("bgImage").style.backgroundImage="";
+setVar("--paper",btn.dataset.bg);
+if(btn.dataset.text){
+$("textColor").value = btn.dataset.text;
+$("titleColor").value = btn.dataset.text;
+}
+render();
+};
 });
 
 $("bgUpload").addEventListener("change",e=>{
-const file=e.target.files[0]; if(!file) return;
+const file=e.target.files[0];
+if(!file) return;
 const reader=new FileReader();
-reader.onload=ev=>{$("bgImage").style.backgroundImage=`url('${ev.target.result}')`;hasImage=true;render()};
+reader.onload=ev=>{
+$("bgImage").style.backgroundImage=`url('${ev.target.result}')`;
+hasImage=true;
+if(Number($("overlayRange").value)===0){
+$("overlayRange").value=0.25;
+}
+render();
+};
 reader.readAsDataURL(file);
 });
 
 $("stickerUpload").addEventListener("change",e=>{
-const file=e.target.files[0]; if(!file) return;
+const file=e.target.files[0];
+if(!file) return;
 const reader=new FileReader();
-reader.onload=ev=>{$("customSticker").src=ev.target.result;hasCustomSticker=true;$("stickerSelect").value="";render()};
+reader.onload=ev=>{
+$("customSticker").src=ev.target.result;
+hasCustomSticker=true;
+$("stickerSelect").value="";
+render();
+};
 reader.readAsDataURL(file);
 });
 
@@ -388,24 +423,50 @@ render();
 };
 
 [
-"kickerInput","titleInput","textInput","sourceInput","fontSelect","titleSize","textSize","sourceSize","lineHeight",
-"topSpace","bottomSpace","sideSpace","contentWidth","kickerColor","titleColor","textColor","sourceColor",
-"stickerSelect","stickerSize","stickerX","stickerY","stickerOpacity",
-"bgTextInput","bgTextSize","bgTextOpacity","bgTextColor","bgTextX","bgTextY","bgTextRotate"
-].forEach(id=>{$(id).addEventListener("input",render);$(id).addEventListener("change",render)});
+"kickerInput","titleInput","textInput","sourceInput","fontSelect",
+"titleSize","textSize","sourceSize","lineHeight","paragraphGap",
+"overlayRange","blurRange","scaleRange","posX","posY","topSpace",
+"bottomSpace","sideSpace","contentWidth","kickerColor","titleColor",
+"textColor","sourceColor","stickerSelect","stickerSize","stickerX",
+"stickerY","stickerOpacity"
+].forEach(id=>{
+$(id).addEventListener("input",render);
+$(id).addEventListener("change",render);
+});
 
-function download(){
-html2canvas($("capture"),{scale:5,backgroundColor:null,useCORS:true,logging:false}).then(canvas=>{
+$("downloadBtn").onclick=()=>{
+html2canvas($("capture"),{
+scale:5,
+backgroundColor:null,
+useCORS:true,
+logging:false
+}).then(canvas=>{
 canvas.toBlob(async blob=>{
 const file=new File([blob],"status.png",{type:"image/png"});
-if(navigator.canShare && navigator.canShare({files:[file]})){await navigator.share({files:[file],title:"حالة واتساب"})}
-else{const link=document.createElement("a");link.download="status.png";link.href=canvas.toDataURL("image/png",1);link.click()}
+if(navigator.canShare && navigator.canShare({files:[file]})){
+await navigator.share({files:[file],title:"حالة واتساب"});
+}else{
+const link=document.createElement("a");
+link.download="status.png";
+link.href=canvas.toDataURL("image/png",1);
+link.click();
+}
 },"image/png",1);
 });
-}
+};
 
-$("downloadBtn").onclick=download;
-$("downloadBtn2").onclick=download;
+$("fullPreviewBtn").onclick=()=>{
+const clone=$("capture").cloneNode(true);
+clone.style.transform="scale(1)";
+$("fullscreenHolder").innerHTML="";
+$("fullscreenHolder").appendChild(clone);
+$("fullscreen").classList.add("active");
+};
+
+$("closeFull").onclick=()=>{
+$("fullscreen").classList.remove("active");
+};
+
 window.onload=render;
 </script>
 </body>
