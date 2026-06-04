@@ -21,6 +21,7 @@
 --titleColor:#1f2a44;
 --textColor:#1e293b;
 --sourceColor:#c9a45d;
+--highlightColor:#c9a45d;
 --titleFont:'Cairo',sans-serif;
 --bodyFont:'Tajawal',sans-serif;
 --titleSize:42px;
@@ -45,64 +46,389 @@
 
 *{box-sizing:border-box;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 
-body{margin:0;padding:22px;background:#e9edf3;font-family:'IBM Plex Sans Arabic',sans-serif;display:flex;justify-content:center}
-.app{width:1320px;max-width:100%;display:grid;grid-template-columns:390px 1fr;gap:26px;align-items:start}
-.sidebar{background:rgba(255,255,255,.94);border-radius:34px;padding:24px;box-shadow:0 30px 80px rgba(15,23,42,.10)}
-.logo{font-size:28px;font-weight:900;line-height:1.2;color:var(--navy);margin-bottom:20px}
-.logo span{display:block;font-size:12px;letter-spacing:1px;margin-top:5px;color:#94a3b8}
+body{
+margin:0;
+padding:22px;
+background:#e9edf3;
+font-family:'IBM Plex Sans Arabic',sans-serif;
+display:flex;
+justify-content:center;
+}
+
+.app{
+width:1320px;
+max-width:100%;
+display:grid;
+grid-template-columns:390px 1fr;
+gap:26px;
+align-items:start;
+}
+
+.sidebar{
+background:rgba(255,255,255,.94);
+border-radius:34px;
+padding:24px;
+box-shadow:0 30px 80px rgba(15,23,42,.10);
+}
+
+.logo{
+font-size:28px;
+font-weight:900;
+line-height:1.2;
+color:var(--navy);
+margin-bottom:20px;
+}
+
+.logo span{
+display:block;
+font-size:12px;
+letter-spacing:1px;
+margin-top:5px;
+color:#94a3b8;
+}
+
 .group{margin-bottom:16px}
-.group-title{font-size:14px;font-weight:900;color:var(--navy);margin:22px 0 12px;padding-top:12px;border-top:1px solid #edf1f5}
-label{display:block;font-size:12px;font-weight:900;margin-bottom:8px;color:#475569}
-input,textarea,select{width:100%;border:none;outline:none;background:#fff;border-radius:16px;padding:14px;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px;box-shadow:inset 0 0 0 1px #dbe3ec}
-input[type="color"]{height:46px;padding:5px;cursor:pointer}
-textarea{height:140px;resize:none;line-height:1.9}
-.range{display:flex;align-items:center;gap:10px}
-.range span{width:45px;text-align:center;font-size:12px;font-weight:900;color:var(--gold)}
-.range input{padding:0;accent-color:var(--gold)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.btn-option{padding:13px;border-radius:16px;font-size:13px;font-weight:900;text-align:center;cursor:pointer;background:#fff;box-shadow:inset 0 0 0 1px #e2e8f0}
-.btn-option.active{box-shadow:0 0 0 2px rgba(201,164,93,.45)}
-button{width:100%;border:none;border-radius:18px;padding:16px;font-size:15px;font-weight:900;font-family:'IBM Plex Sans Arabic',sans-serif;background:linear-gradient(135deg,#24324c,#111827);color:white;cursor:pointer}
-.delete-btn{background:#fff;color:#b91c1c;box-shadow:inset 0 0 0 1px #fecaca}
-.stage{display:flex;flex-direction:column;align-items:center;gap:12px;position:sticky;top:18px;align-self:start}
-.stage-title{font-size:14px;font-weight:900;color:#334155}
-.story{width:390px;height:690px;background:var(--paper);overflow:hidden;position:relative;box-shadow:0 40px 100px rgba(0,0,0,.18)}
-.bg-image{position:absolute;inset:0;background-size:cover;background-position:var(--posX) var(--posY);transform:scale(var(--scale));filter:blur(var(--blur));z-index:0;display:none}
-.overlay{position:absolute;inset:0;background:rgba(0,0,0,var(--overlay));z-index:1;display:none}
-.content{position:absolute;top:var(--topSpace);right:var(--sideSpace);left:var(--sideSpace);bottom:var(--bottomSpace);display:flex;flex-direction:column;justify-content:flex-start;z-index:2;max-width:var(--contentWidth);margin:auto}
-.kicker{font-size:13px;font-weight:900;color:var(--kickerColor);margin-bottom:12px;text-align:center}
-.title{font-family:var(--titleFont);font-size:var(--titleSize);font-weight:900;line-height:1.2;margin:0 0 24px;color:var(--titleColor);text-align:center}
-.text{font-family:var(--bodyFont);font-size:var(--textSize);line-height:var(--lineHeight);white-space:pre-line;font-weight:800;color:var(--textColor);text-align:center}
-.text p{margin:0 0 var(--paragraphGap)}
-.source{margin-top:auto;font-size:var(--sourceSize);font-weight:900;color:var(--sourceColor);text-align:center}
-.sticker{position:absolute;left:var(--stickerX);top:var(--stickerY);transform:translate(-50%,-50%);font-size:var(--stickerSize);opacity:var(--stickerOpacity);z-index:3;pointer-events:none}
-.custom-sticker{position:absolute;left:var(--stickerX);top:var(--stickerY);transform:translate(-50%,-50%);width:var(--stickerSize);height:var(--stickerSize);object-fit:contain;opacity:var(--stickerOpacity);z-index:4;display:none;pointer-events:none}
+
+.group-title{
+font-size:14px;
+font-weight:900;
+color:var(--navy);
+margin:22px 0 12px;
+padding-top:12px;
+border-top:1px solid #edf1f5;
+}
+
+label{
+display:block;
+font-size:12px;
+font-weight:900;
+margin-bottom:8px;
+color:#475569;
+}
+
+input,textarea,select{
+width:100%;
+border:none;
+outline:none;
+background:#fff;
+border-radius:16px;
+padding:14px;
+font-family:'IBM Plex Sans Arabic',sans-serif;
+font-size:14px;
+box-shadow:inset 0 0 0 1px #dbe3ec;
+}
+
+input[type="color"]{
+height:46px;
+padding:5px;
+cursor:pointer;
+}
+
+textarea{
+height:140px;
+resize:none;
+line-height:1.9;
+}
+
+.range{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.range span{
+width:45px;
+text-align:center;
+font-size:12px;
+font-weight:900;
+color:var(--gold);
+}
+
+.range input{
+padding:0;
+accent-color:var(--gold);
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.btn-option{
+padding:13px;
+border-radius:16px;
+font-size:13px;
+font-weight:900;
+text-align:center;
+cursor:pointer;
+background:#fff;
+box-shadow:inset 0 0 0 1px #e2e8f0;
+}
+
+.btn-option.active{
+box-shadow:0 0 0 2px rgba(201,164,93,.45);
+}
+
+button{
+width:100%;
+border:none;
+border-radius:18px;
+padding:16px;
+font-size:15px;
+font-weight:900;
+font-family:'IBM Plex Sans Arabic',sans-serif;
+background:linear-gradient(135deg,#24324c,#111827);
+color:white;
+cursor:pointer;
+}
+
+.delete-btn{
+background:#fff;
+color:#b91c1c;
+box-shadow:inset 0 0 0 1px #fecaca;
+}
+
+.stage{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:12px;
+position:sticky;
+top:18px;
+align-self:start;
+}
+
+.stage-title{
+font-size:14px;
+font-weight:900;
+color:#334155;
+}
+
+.story{
+width:390px;
+height:690px;
+background:var(--paper);
+overflow:hidden;
+position:relative;
+box-shadow:0 40px 100px rgba(0,0,0,.18);
+}
+
+.bg-image{
+position:absolute;
+inset:0;
+background-size:cover;
+background-position:var(--posX) var(--posY);
+transform:scale(var(--scale));
+filter:blur(var(--blur));
+z-index:0;
+display:none;
+}
+
+.overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,var(--overlay));
+z-index:1;
+display:none;
+}
+
+.content{
+position:absolute;
+top:var(--topSpace);
+right:var(--sideSpace);
+left:var(--sideSpace);
+bottom:var(--bottomSpace);
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+z-index:2;
+max-width:var(--contentWidth);
+margin:auto;
+}
+
+.kicker{
+font-size:13px;
+font-weight:900;
+color:var(--kickerColor);
+margin-bottom:12px;
+text-align:center;
+}
+
+.title{
+font-family:var(--titleFont);
+font-size:var(--titleSize);
+font-weight:900;
+line-height:1.2;
+margin:0 0 24px;
+color:var(--titleColor);
+text-align:center;
+}
+
+.text{
+font-family:var(--bodyFont);
+font-size:var(--textSize);
+line-height:var(--lineHeight);
+white-space:pre-line;
+font-weight:800;
+color:var(--textColor);
+text-align:center;
+}
+
+.mark{
+color:var(--highlightColor);
+font-weight:900;
+}
+
+.source{
+margin-top:auto;
+font-size:var(--sourceSize);
+font-weight:900;
+color:var(--sourceColor);
+text-align:center;
+}
+
+.sticker{
+position:absolute;
+left:var(--stickerX);
+top:var(--stickerY);
+transform:translate(-50%,-50%);
+font-size:var(--stickerSize);
+opacity:var(--stickerOpacity);
+z-index:3;
+pointer-events:none;
+}
+
+.custom-sticker{
+position:absolute;
+left:var(--stickerX);
+top:var(--stickerY);
+transform:translate(-50%,-50%);
+width:var(--stickerSize);
+height:var(--stickerSize);
+object-fit:contain;
+opacity:var(--stickerOpacity);
+z-index:4;
+display:none;
+pointer-events:none;
+}
+
 .poster .content{justify-content:center}
 .poster .title{font-size:calc(var(--titleSize) + 10px)}
 .poster .text{font-size:calc(var(--textSize) + 4px)}
-.quote .title{font-size:24px;color:var(--kickerColor)}
-.quote .text{font-size:calc(var(--textSize) + 5px)}
-.reading .content{justify-content:center;text-align:right;max-width:none;margin:0}
-.reading .title,.reading .text,.reading .source,.reading .kicker{text-align:right}
-.reading .title:after{content:"";display:block;width:70px;height:4px;background:var(--kickerColor);border-radius:20px;margin:16px 0 0 auto}
-.list .text{text-align:right;font-size:calc(var(--textSize) - 4px);line-height:1.9}
-.align-right .kicker,.align-right .title,.align-right .text,.align-right .source{text-align:right}
-.align-center .kicker,.align-center .title,.align-center .text,.align-center .source{text-align:center}
-.align-left .kicker,.align-left .title,.align-left .text,.align-left .source{text-align:left}
-.has-image .bg-image,.has-image .overlay{display:block}
-.has-image{background:#111}
-.has-image .title,.has-image .text{text-shadow:0 2px 12px rgba(0,0,0,.35)}
-.preview-btn{background:#fff;color:#1f2a44;box-shadow:inset 0 0 0 1px #dbe3ec}
-.fullscreen{position:fixed;inset:0;background:rgba(15,23,42,.86);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px}
+
+.quote .title{
+font-size:24px;
+color:var(--kickerColor);
+}
+
+.quote .text{
+font-size:calc(var(--textSize) + 5px);
+}
+
+.reading .content{
+justify-content:center;
+text-align:right;
+max-width:none;
+margin:0;
+}
+
+.reading .title,
+.reading .text,
+.reading .source,
+.reading .kicker{
+text-align:right;
+}
+
+.reading .title:after{
+content:"";
+display:block;
+width:70px;
+height:4px;
+background:var(--kickerColor);
+border-radius:20px;
+margin:16px 0 0 auto;
+}
+
+.list .text{
+text-align:right;
+font-size:calc(var(--textSize) - 4px);
+line-height:1.9;
+}
+
+.align-right .kicker,
+.align-right .title,
+.align-right .text,
+.align-right .source{text-align:right}
+
+.align-center .kicker,
+.align-center .title,
+.align-center .text,
+.align-center .source{text-align:center}
+
+.align-left .kicker,
+.align-left .title,
+.align-left .text,
+.align-left .source{text-align:left}
+
+.has-image .bg-image,
+.has-image .overlay{
+display:block;
+}
+
+.has-image{
+background:#111;
+}
+
+.has-image .title,
+.has-image .text{
+text-shadow:0 2px 12px rgba(0,0,0,.35);
+}
+
+.preview-btn{
+background:#fff;
+color:#1f2a44;
+box-shadow:inset 0 0 0 1px #dbe3ec;
+}
+
+.fullscreen{
+position:fixed;
+inset:0;
+background:rgba(15,23,42,.86);
+z-index:9999;
+display:none;
+align-items:center;
+justify-content:center;
+padding:20px;
+}
+
 .fullscreen.active{display:flex}
-.fullscreen .close{position:absolute;top:18px;left:18px;width:auto;padding:12px 18px;background:#fff;color:#1f2a44}
+.fullscreen .close{
+position:absolute;
+top:18px;
+left:18px;
+width:auto;
+padding:12px 18px;
+background:#fff;
+color:#1f2a44;
+}
 
 @media(max-width:900px){
 body{padding:14px}
 .app{display:flex;flex-direction:column;align-items:center}
 .sidebar{width:100%;max-width:430px}
-.stage{position:sticky;top:8px;z-index:10;background:#e9edf3;padding:8px 0 14px;width:100%}
-.story{width:330px;height:584px}
+.stage{
+position:sticky;
+top:8px;
+z-index:10;
+background:#e9edf3;
+padding:8px 0 14px;
+width:100%;
+}
+.story{
+width:330px;
+height:584px;
+}
 }
 </style>
 </head>
@@ -128,12 +454,29 @@ body{padding:14px}
 </div>
 
 <div class="group-title">المحتوى</div>
-<div class="group"><label>التصنيف</label><input id="kickerInput" value="أنس سعيد ولد عم"></div>
-<div class="group"><label>العنوان</label><input id="titleInput" value="خاطر الزهراني"></div>
-<div class="group"><label>النص</label><textarea id="textInput">"القراءة السطحية وملاحقة القشور تُجهد العين وتُربك العقل، أما الفكر العميق فهو الذي يبني الإنسان."</textarea></div>
-<div class="group"><label>المصدر</label><input id="sourceInput" value="تذكير لطيف"></div>
+
+<div class="group">
+<label>التصنيف</label>
+<input id="kickerInput" value="أنس سعيد ولد عم">
+</div>
+
+<div class="group">
+<label>العنوان</label>
+<input id="titleInput" value="خاطر الزهراني">
+</div>
+
+<div class="group">
+<label>النص</label>
+<textarea id="textInput">"القراءة السطحية وملاحقة القشور تُجهد العين وتُربك العقل، أما [الفكر العميق] فهو الذي يبني الإنسان."</textarea>
+</div>
+
+<div class="group">
+<label>المصدر</label>
+<input id="sourceInput" value="تذكير لطيف">
+</div>
 
 <div class="group-title">تنسيق النص</div>
+
 <div class="group">
 <label>نوع الخط</label>
 <select id="fontSelect">
@@ -169,16 +512,19 @@ body{padding:14px}
 <div class="group"><label>المسافة بين الفقرات</label><div class="range"><input type="range" id="paragraphGap" min="0" max="50" value="18"><span id="paraVal">18</span></div></div>
 
 <div class="group-title">ألوان مفتوحة</div>
+
 <div class="group">
 <div class="grid">
 <div><label>التصنيف</label><input type="color" id="kickerColor" value="#ff7a45"></div>
 <div><label>العنوان</label><input type="color" id="titleColor" value="#1f2a44"></div>
 <div><label>النص</label><input type="color" id="textColor" value="#1e293b"></div>
 <div><label>المصدر</label><input type="color" id="sourceColor" value="#c9a45d"></div>
+<div><label>الجملة المميزة [ ]</label><input type="color" id="highlightColor" value="#c9a45d"></div>
 </div>
 </div>
 
 <div class="group-title">الخلفية</div>
+
 <div class="group">
 <label>الخلفيات الجاهزة</label>
 <div class="grid">
@@ -241,7 +587,7 @@ body{padding:14px}
 <div class="content">
 <div class="kicker" id="kickerView">أنس سعيد ولد عم</div>
 <div class="title" id="titleView">خاطر الزهراني</div>
-<div class="text" id="textView">"القراءة السطحية وملاحقة القشور تُجهد العين وتُربك العقل، أما الفكر العميق فهو الذي يبني الإنسان."</div>
+<div class="text" id="textView">"القراءة السطحية وملاحقة القشور تُجهد العين وتُربك العقل، أما <span class="mark">الفكر العميق</span> فهو الذي يبني الإنسان."</div>
 <div class="source" id="sourceView">تذكير لطيف</div>
 </div>
 
@@ -265,6 +611,19 @@ let currentMode = "basic";
 let hasImage = false;
 let currentAlign = "align-center";
 let hasCustomSticker = false;
+
+function escapeHTML(str){
+return str.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+}
+
+function formatMarkedText(str){
+let safe = escapeHTML(str);
+return safe.replace(/\[([^\]]+)\]/g,'<span class="mark">$1</span>');
+}
 
 function applyFont(){
 const font = $("fontSelect").value;
@@ -298,7 +657,7 @@ capture.className = "story " + currentMode + " " + currentAlign + (hasImage ? " 
 
 $("kickerView").innerText = $("kickerInput").value;
 $("titleView").innerText = $("titleInput").value;
-$("textView").innerText = $("textInput").value;
+$("textView").innerHTML = formatMarkedText($("textInput").value);
 $("sourceView").innerText = $("sourceInput").value;
 $("stickerView").innerText = hasCustomSticker ? "" : $("stickerSelect").value;
 
@@ -325,6 +684,7 @@ setVar("--kickerColor",$("kickerColor").value);
 setVar("--titleColor",$("titleColor").value);
 setVar("--textColor",$("textColor").value);
 setVar("--sourceColor",$("sourceColor").value);
+setVar("--highlightColor",$("highlightColor").value);
 
 setVar("--stickerSize",$("stickerSize").value+"px");
 setVar("--stickerX",$("stickerX").value+"%");
@@ -427,7 +787,7 @@ render();
 "titleSize","textSize","sourceSize","lineHeight","paragraphGap",
 "overlayRange","blurRange","scaleRange","posX","posY","topSpace",
 "bottomSpace","sideSpace","contentWidth","kickerColor","titleColor",
-"textColor","sourceColor","stickerSelect","stickerSize","stickerX",
+"textColor","sourceColor","highlightColor","stickerSelect","stickerSize","stickerX",
 "stickerY","stickerOpacity"
 ].forEach(id=>{
 $(id).addEventListener("input",render);
